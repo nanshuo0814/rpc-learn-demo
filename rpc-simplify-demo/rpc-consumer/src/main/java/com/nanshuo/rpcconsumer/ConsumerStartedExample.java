@@ -1,6 +1,8 @@
 package com.nanshuo.rpcconsumer;
 
+import com.nanshuo.rpccode.proxy.ServiceDynamicProxyFactory;
 import com.nanshuo.rpccommon.model.User;
+import com.nanshuo.rpccommon.service.UserService;
 
 /**
  * 消费者启动示例
@@ -12,8 +14,9 @@ public class ConsumerStartedExample {
 
     public static void main(String[] args) {
         // 方式一：静态代理
-        UserStaticServiceProxy userService = new UserStaticServiceProxy();
-        // 方式二：todo 动态代理
+        //UserStaticServiceProxy userService = new UserStaticServiceProxy();
+        // 方式二：动态代理
+        UserService userService = ServiceDynamicProxyFactory.getProxy(UserService.class);
         User user = new User();
         user.setName("nanshuo");
         User newUser = userService.getUser(user);
