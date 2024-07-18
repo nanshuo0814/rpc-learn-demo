@@ -48,7 +48,7 @@ public class HttpServerHandler implements Handler<HttpServerRequest> {
             }
             Class<?> clazz = LocalRegistryCenter.get(rpcRequest.getServiceName());
             try {
-                Method method = clazz.getMethod(rpcRequest.getMethodName());
+                Method method = clazz.getMethod(rpcRequest.getMethodName(),rpcRequest.getParameterTypes());
                 Object result = method.invoke(clazz.newInstance(), rpcRequest.getArgs());
                 // 封装返回结果
                 rpcResponse.setData(result);
