@@ -1,10 +1,12 @@
 package com.nanshuo.rpccode.server;
 
+import com.nanshuo.rpccode.RpcApplication;
 import com.nanshuo.rpccode.model.RpcRequest;
 import com.nanshuo.rpccode.model.RpcResponse;
 import com.nanshuo.rpccode.registry.LocalRegistryCenter;
 import com.nanshuo.rpccode.serializer.JdkSerializer;
 import com.nanshuo.rpccode.serializer.Serializer;
+import com.nanshuo.rpccode.serializer.SerializerFactory;
 import io.vertx.core.Handler;
 import io.vertx.core.buffer.Buffer;
 import io.vertx.core.http.HttpServerRequest;
@@ -21,12 +23,12 @@ import java.lang.reflect.Method;
  * @author <a href="https://github.com/nanshuo0814">nanshuo(南烁)</a>
  * @date 2024/07/18
  */
-public class HttpServerHandler implements Handler<HttpServerRequest> {
+public class    HttpServerHandler implements Handler<HttpServerRequest> {
 
     @Override
     public void handle(HttpServerRequest httpServerRequest) {
         // 指定序列化器（自定义的JDK序列化器）
-        final Serializer serializer = new JdkSerializer();
+        final Serializer serializer = SerializerFactory.getInstance(RpcApplication.getRpcConfig().getSerializer());
         // 记录日志
         System.out.println("Received request: " + httpServerRequest.method() + " " + httpServerRequest.uri());
         // 异步处理 HTTP 请求

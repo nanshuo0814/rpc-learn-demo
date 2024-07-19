@@ -2,10 +2,12 @@ package com.nanshuo.rpccode.proxy;
 
 import cn.hutool.http.HttpRequest;
 import cn.hutool.http.HttpResponse;
+import com.nanshuo.rpccode.RpcApplication;
 import com.nanshuo.rpccode.model.RpcRequest;
 import com.nanshuo.rpccode.model.RpcResponse;
 import com.nanshuo.rpccode.serializer.JdkSerializer;
 import com.nanshuo.rpccode.serializer.Serializer;
+import com.nanshuo.rpccode.serializer.SerializerFactory;
 import com.nanshuo.rpccommon.model.User;
 import com.nanshuo.rpccommon.service.UserService;
 
@@ -33,7 +35,8 @@ public class JdkDynamicServiceProxy implements InvocationHandler {
     @Override
     public Object invoke(Object proxy, Method method, Object[] args) {
         // 指定序列化器
-        final Serializer serializer = new JdkSerializer();
+        final Serializer serializer = SerializerFactory.getInstance(RpcApplication.getRpcConfig().getSerializer());
+
         // 构造请求
         RpcRequest rpcRequest = RpcRequest.builder().serviceName(UserService.class.getName())
                 .methodName(method.getName())

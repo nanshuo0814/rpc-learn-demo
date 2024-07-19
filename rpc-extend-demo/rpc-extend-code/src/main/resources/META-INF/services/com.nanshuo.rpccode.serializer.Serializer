@@ -1,0 +1,4 @@
+com.nanshuo.rpccode.serializer.JdkSerializer
+com.nanshuo.rpccode.serializer.HessianSerializer
+com.nanshuo.rpccode.serializer.JsonSerializer
+com.nanshuo.rpccode.serializer.KryoSerializer

@@ -1,0 +1,2 @@
+jdk=com.nanshuo.rpccode.serializer.JdkSerializer
+kryo=com.nanshuo.rpccode.serializer.KryoSerializer

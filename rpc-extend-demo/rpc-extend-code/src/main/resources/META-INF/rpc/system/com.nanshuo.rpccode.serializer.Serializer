@@ -1,0 +1,2 @@
+jdk=com.nanshuo.rpccode.serializer.JdkSerializer
+hessian=com.nanshuo.rpccode.serializer.HessianSerializer
