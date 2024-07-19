@@ -9,12 +9,26 @@
         <version>1.0-SNAPSHOT</version>
     </parent>
 
-    <artifactId>rpc-common</artifactId>
+    <artifactId>rpc-simplify-consumer</artifactId>
 
     <properties>
         <maven.compiler.source>8</maven.compiler.source>
         <maven.compiler.target>8</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
+    <dependencies>
+        <dependency>
+            <groupId>com.nanshuo</groupId>
+            <artifactId>rpc-simplify-common</artifactId>
+            <version>1.0-SNAPSHOT</version>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.nanshuo</groupId>
+            <artifactId>rpc-simplify-code</artifactId>
+            <version>1.0-SNAPSHOT</version>
+            <scope>compile</scope>
+        </dependency>
+    </dependencies>
 
 </project>

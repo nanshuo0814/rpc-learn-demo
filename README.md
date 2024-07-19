@@ -7,13 +7,13 @@
 项目分为简易版和扩展版
 
 - 简易版：rpc-simplify-demo
-  - rpc-code：RPC 框架简易版核心代码
-  - rpc-common：RPC 公用模块
-  - rpc-consumer：RPC 服务消费者
-  - rpc-provider：RPC 服务提供者
+  - rpc-simplify-code：RPC 框架简易版核心代码
+  - rpc-simplify-common：RPC 公用模块
+  - rpc-simplify-consumer：RPC 服务消费者
+  - rpc-simplify-provider：RPC 服务提供者
 - 扩展版：rpc-extend-demo
-  - rpc-code：RPC 框架扩展版核心代码
-  - rpc-common：RPC 公用模块
+  - rpc-extend-code：RPC 框架扩展版核心代码
+  - rpc-extend-common：RPC 公用模块
   - rpc-springboot-consumer：RPC 服务消费者（Spring Boot 框架）
   - rpc-springboot-provider：RPC 服务提供者（Spring Boot 框架）
   - rpc-spring-boot-starter：注解驱动的 RPC 框架，可在 Spring Boot 项目中快速使用

@@ -5,14 +5,10 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.nanshuo</groupId>
-    <artifactId>rpc-simplify-demo</artifactId>
+    <artifactId>rpc-extend-demo</artifactId>
     <version>1.0-SNAPSHOT</version>
-    <packaging>pom</packaging>
+
     <modules>
-        <module>rpc-simplify-common</module>
-        <module>rpc-simplify-consumer</module>
-        <module>rpc-simplify-code</module>
-        <module>rpc-simplify-provider</module>
     </modules>
 
     <properties>
