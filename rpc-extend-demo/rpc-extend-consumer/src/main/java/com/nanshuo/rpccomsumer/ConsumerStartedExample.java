@@ -26,6 +26,8 @@ public class ConsumerStartedExample {
         } else {
             System.out.println("user is null");
         }
+        short number = userService.getNumber();
+        System.out.println(number);
     }
 
 }
