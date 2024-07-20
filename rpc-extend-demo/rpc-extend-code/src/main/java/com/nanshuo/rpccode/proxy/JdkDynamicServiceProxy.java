@@ -4,6 +4,8 @@ import cn.hutool.core.collection.CollUtil;
 import com.nanshuo.rpccode.RpcApplication;
 import com.nanshuo.rpccode.config.RpcConfig;
 import com.nanshuo.rpccode.constant.RpcConstant;
+import com.nanshuo.rpccode.fault.retry.RetryStrategy;
+import com.nanshuo.rpccode.fault.retry.RetryStrategyFactory;
 import com.nanshuo.rpccode.loadbalancer.LoadBalancer;
 import com.nanshuo.rpccode.loadbalancer.LoadBalancerFactory;
 import com.nanshuo.rpccode.model.RpcRequest;
@@ -68,7 +70,11 @@ public class JdkDynamicServiceProxy implements InvocationHandler {
             ServiceMetaInfo selectedServiceMetaInfo = loadBalancer.select(requestParams, serviceMetaInfoList);
 
             // rpc 请求
-            RpcResponse rpcResponse = VertxTcpClient.doRequest(rpcRequest, selectedServiceMetaInfo);
+            // 使用重试机制
+            RetryStrategy retryStrategy = RetryStrategyFactory.getInstance(rpcConfig.getRetryStrategy());
+            RpcResponse rpcResponse = retryStrategy.doRetry(() ->
+                    VertxTcpClient.doRequest(rpcRequest, selectedServiceMetaInfo)
+            );
             return rpcResponse.getData();
         } catch (Exception e) {
             throw new RuntimeException("调用失败");

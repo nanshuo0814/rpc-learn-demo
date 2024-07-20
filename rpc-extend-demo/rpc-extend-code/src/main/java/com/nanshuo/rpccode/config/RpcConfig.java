@@ -1,5 +1,7 @@
 package com.nanshuo.rpccode.config;
 
+import com.nanshuo.rpccode.fault.retry.RetryStrategyKeys;
+import com.nanshuo.rpccode.fault.tolerant.TolerantStrategyKeys;
 import com.nanshuo.rpccode.loadbalancer.LoadBalancerKeys;
 import com.nanshuo.rpccode.serializer.SerializerKeys;
 import lombok.Data;
@@ -53,5 +55,15 @@ public class RpcConfig {
      * 负载均衡器
      */
     private String loadBalancer = LoadBalancerKeys.ROUND_ROBIN;
+
+    /**
+     * 重试策略
+     */
+    private String retryStrategy = RetryStrategyKeys.NO;
+
+    /**
+     * 容错策略
+     */
+    private String tolerantStrategy = TolerantStrategyKeys.FAIL_FAST;
 
 }
