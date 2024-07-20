@@ -1,0 +1,4 @@
+failBack=com.nanshuo.rpccode.fault.tolerant.FailBackTolerantStrategy
+failFast=com.nanshuo.rpccode.fault.tolerant.FailFastTolerantStrategy
+failOver=com.nanshuo.rpccode.fault.tolerant.FailOverTolerantStrategy
+failSafe=com.nanshuo.rpccode.fault.tolerant.FailSafeTolerantStrategy
