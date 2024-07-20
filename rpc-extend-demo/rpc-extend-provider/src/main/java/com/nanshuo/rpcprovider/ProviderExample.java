@@ -9,6 +9,7 @@ import com.nanshuo.rpccode.registry.Registry;
 import com.nanshuo.rpccode.registry.RegistryFactory;
 import com.nanshuo.rpccode.server.HttpServer;
 import com.nanshuo.rpccode.server.VertxHttpServer;
+import com.nanshuo.rpccode.server.tcp.VertxTcpServer;
 import com.nanshuo.rpccommon.service.UserService;
 
 import java.util.ArrayList;
@@ -22,25 +23,29 @@ import java.util.ArrayList;
 public class ProviderExample {
 
     public static void main(String[] args) {
-        // rpc 框架初始化
+        // RPC 框架初始化
         RpcApplication.init();
+
         // 注册服务
-        LocalRegistryCenter.register(UserService.class.getName(), UserServiceImpl.class);
-        // 将服务注册到注册中心
+        String serviceName = UserService.class.getName();
+        LocalRegistryCenter.register(serviceName, UserServiceImpl.class);
+
+        // 注册服务到注册中心
         RpcConfig rpcConfig = RpcApplication.getRpcConfig();
         RegistryConfig registryConfig = rpcConfig.getRegistryConfig();
         Registry registry = RegistryFactory.getInstance(registryConfig.getRegistry());
         ServiceMetaInfo serviceMetaInfo = new ServiceMetaInfo();
-        serviceMetaInfo.setServiceName(UserService.class.getName());
+        serviceMetaInfo.setServiceName(serviceName);
         serviceMetaInfo.setServiceHost(rpcConfig.getServerHost());
         serviceMetaInfo.setServicePort(rpcConfig.getServerPort());
-        try{
+        try {
             registry.register(serviceMetaInfo);
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
-        // 启动Web服务
-        HttpServer httpServer = new VertxHttpServer();
-        httpServer.doStart(RpcApplication.getRpcConfig().getServerPort());
+
+        // 启动 TCP 服务
+        VertxTcpServer vertxTcpServer = new VertxTcpServer();
+        vertxTcpServer.doStart(8080);
     }
 }
