@@ -1,0 +1,3 @@
+roundRobin=com.nanshuo.rpccode.loadbalancer.RoundRobinLoadBalancer
+random=com.nanshuo.rpccode.loadbalancer.RandomLoadBalancer
+consistentHash=com.nanshuo.rpccode.loadbalancer.ConsistentHashLoadBalancer
