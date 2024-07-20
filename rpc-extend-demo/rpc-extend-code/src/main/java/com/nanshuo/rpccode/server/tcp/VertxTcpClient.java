@@ -22,7 +22,6 @@ import java.util.concurrent.ExecutionException;
  * @date 2024/07/20
  */
 public class VertxTcpClient {
-
     /**
      * 发送请求
      *
