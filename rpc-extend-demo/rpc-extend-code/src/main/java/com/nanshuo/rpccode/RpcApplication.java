@@ -1,12 +1,13 @@
 package com.nanshuo.rpccode;
 
+import com.nanshuo.rpccode.config.RegistryConfig;
 import com.nanshuo.rpccode.config.RpcConfig;
 import com.nanshuo.rpccode.constant.RpcConstant;
-import com.nanshuo.rpccode.registry.LocalRegistryCenter;
+import com.nanshuo.rpccode.registry.Registry;
+import com.nanshuo.rpccode.registry.RegistryFactory;
 import com.nanshuo.rpccode.utils.ConfigUtils;
 import lombok.extern.slf4j.Slf4j;
 
-import java.rmi.registry.Registry;
 
 /**
  * RPC 框架应用
@@ -30,6 +31,11 @@ public class RpcApplication {
     public static void init(RpcConfig newRpcConfig) {
         rpcConfig = newRpcConfig;
         log.info("rpc init, config = {}", newRpcConfig.toString());
+        // 注册中心初始化
+        RegistryConfig registryConfig = rpcConfig.getRegistryConfig();
+        Registry registry = RegistryFactory.getInstance(registryConfig.getRegistry());
+        registry.init(registryConfig);
+        log.info("registry init, config = {}", registryConfig);
     }
 
     /**
